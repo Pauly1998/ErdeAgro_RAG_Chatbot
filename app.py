@@ -1,5 +1,6 @@
 from pathlib import Path
 import json
+import os
 
 import faiss
 import numpy as np
@@ -30,7 +31,7 @@ INDEX_FILE = BASE_DIR / "New folder" / "erde_agro.index"
 # ============================================================
 
 EMBEDDING_MODEL = "all-MiniLM-L6-v2"
-OLLAMA_MODEL = "llama3.2:3b"
+OLLAMA_MODEL = os.environ.get("OLLAMA_MODEL", "llama3.2:3b")
 TOP_K = 3
 
 
@@ -40,10 +41,7 @@ TOP_K = 3
 
 print("Loading embedding model...")
 
-embedding_model = SentenceTransformer(
-    EMBEDDING_MODEL,
-    backend="onnx"
-)
+embedding_model = SentenceTransformer(EMBEDDING_MODEL)
 
 
 # ============================================================
@@ -183,6 +181,11 @@ def chat():
 
     data = request.get_json()
 
+    if not data:
+        return jsonify({
+            "answer": "Please enter a question."
+        })
+
     question = data.get("question", "").strip()
 
     if not question:
@@ -224,8 +227,6 @@ def chat():
 # ============================================================
 
 if __name__ == "__main__":
-
-    import os
 
     port = int(os.environ.get("PORT", 5000))
 
