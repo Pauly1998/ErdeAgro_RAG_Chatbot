@@ -40,7 +40,10 @@ TOP_K = 3
 
 print("Loading embedding model...")
 
-embedding_model = SentenceTransformer(EMBEDDING_MODEL)
+embedding_model = SentenceTransformer(
+    EMBEDDING_MODEL,
+    backend="onnx"
+)
 
 
 # ============================================================
@@ -138,7 +141,9 @@ RULES:
 3. Do not make up products, crops, services, certifications,
    locations, or contact details.
 4. If the answer is not available in the knowledge base, say:
+
 "I don't have that information in my knowledge base."
+
 5. Give a clear and useful answer.
 6. Use bullet points when appropriate.
 7. Be professional and friendly.
@@ -220,8 +225,12 @@ def chat():
 
 if __name__ == "__main__":
 
+    import os
+
+    port = int(os.environ.get("PORT", 5000))
+
     app.run(
-        debug=True,
-        host="127.0.0.1",
-        port=5000
+        debug=False,
+        host="0.0.0.0",
+        port=port
     )

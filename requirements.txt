@@ -4,4 +4,4 @@ faiss-cpu
 numpy
 sentence-transformers
 ollama
-pymupdf
+onnxruntime
