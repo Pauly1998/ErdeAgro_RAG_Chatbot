@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>ERDE Agro AI</title>
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+
+  <body>
+    <div class="app">
+      <!-- ================= SIDEBAR ================= -->
+
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-logo">🌱</div>
+
+          <div>
+            <h2>ERDE Agro</h2>
+            <span>AI Assistant</span>
+          </div>
+        </div>
+
+        <button class="new-chat-btn" onclick="newChat()">
+          <span>＋</span>
+          New Chat
+        </button>
+
+        <div class="sidebar-title">EXPLORE ERDE AGRO</div>
+
+        <div class="nav-item">
+          <span>🌾</span>
+          <div>
+            <strong>About ERDE Agro</strong>
+            <small>Our agricultural vision</small>
+          </div>
+        </div>
+
+        <div class="nav-item">
+          <span>🌱</span>
+          <div>
+            <strong>Sustainable Growth</strong>
+            <small>Technology & agriculture</small>
+          </div>
+        </div>
+
+        <div class="sidebar-title crop-title">CROP PORTFOLIO</div>
+
+        <div class="crop-item">
+          <span>🌶️</span>
+          <span>Spices</span>
+        </div>
+
+        <div class="crop-item">
+          <span>🌾</span>
+          <span>Cereals & Grains</span>
+        </div>
+
+        <div class="crop-item">
+          <span>🫘</span>
+          <span>Pulses & Millets</span>
+        </div>
+
+        <div class="crop-item">
+          <span>🍍</span>
+          <span>Fruits & Others</span>
+        </div>
+
+        <div class="sidebar-bottom">
+          <div class="ai-card">
+            <div class="ai-icon">🤖</div>
+
+            <div>
+              <strong>Local AI</strong>
+              <small>Powered by Ollama</small>
+            </div>
+
+            <span class="online-dot"></span>
+          </div>
+        </div>
+      </aside>
+
+      <!-- ================= MAIN ================= -->
+
+      <main class="main">
+        <!-- HEADER -->
+
+        <header class="header">
+          <div class="header-left">
+            <div class="header-icon">🌱</div>
+
+            <div>
+              <h1>ERDE Agro AI</h1>
+              <p>Intelligent Agriculture Assistant</p>
+            </div>
+          </div>
+
+          <div class="header-status">
+            <span class="online-dot"></span>
+            AI Online
+          </div>
+        </header>
+
+        <!-- ================= CHAT AREA ================= -->
+
+        <section class="chat-container">
+          <!-- WELCOME SCREEN -->
+
+          <div class="welcome-screen" id="welcomeScreen">
+            <div class="hero-decoration left">🌿</div>
+
+            <div class="hero-decoration right">🍃</div>
+
+            <div class="welcome-icon">🌾</div>
+
+            <div class="welcome-badge">🌱 SMART AGRICULTURE ASSISTANT</div>
+
+            <h2>
+              Securing Agriculture.
+              <br />
+              <span>Transforming Futures.</span>
+            </h2>
+
+            <p class="welcome-description">
+              Welcome to ERDE Agro AI. Explore our agricultural portfolio, learn
+              about our approach, and ask questions about crops, farming and
+              ERDE Agro.
+            </p>
+
+            <!-- ABOUT CARD -->
+
+            <div class="about-card">
+              <div class="about-icon">🌱</div>
+
+              <div class="about-content">
+                <h3>About ERDE Agro</h3>
+
+                <p>
+                  ERDE Agro focuses on farmer-centric, sustainable and
+                  technology-driven agriculture. Our approach combines
+                  scientific agriculture, digital farm management, reliable
+                  supply security and market linkages.
+                </p>
+              </div>
+            </div>
+
+            <!-- VALUES -->
+
+            <div class="values">
+              <div class="value-card">
+                <div>👨‍🌾</div>
+
+                <h4>Farmer Centric</h4>
+
+                <p>Focused on farmers and their needs.</p>
+              </div>
+
+              <div class="value-card">
+                <div>🌱</div>
+
+                <h4>Sustainable</h4>
+
+                <p>Supporting sustainable agricultural growth.</p>
+              </div>
+
+              <div class="value-card">
+                <div>🤖</div>
+
+                <h4>Technology Driven</h4>
+
+                <p>Technology-powered agriculture solutions.</p>
+              </div>
+
+              <div class="value-card">
+                <div>🔗</div>
+
+                <h4>Market Linkages</h4>
+
+                <p>Connecting agriculture with reliable markets.</p>
+              </div>
+            </div>
+
+            <!-- CROP PORTFOLIO -->
+
+            <div class="portfolio-section">
+              <div class="section-heading">
+                <span>🌾</span>
+
+                <div>
+                  <h3>Our Agriculture Portfolio</h3>
+                  <p>Explore ERDE Agro crop categories</p>
+                </div>
+              </div>
+
+              <div class="portfolio-grid">
+                <button
+                  class="portfolio-card"
+                  onclick="askSuggestion('What spices does ERDE Agro offer?')"
+                >
+                  <div class="portfolio-emoji">🌶️</div>
+
+                  <div>
+                    <strong>Spices</strong>
+                    <small>Explore spice crops</small>
+                  </div>
+
+                  <span class="arrow">→</span>
+                </button>
+
+                <button
+                  class="portfolio-card"
+                  onclick="askSuggestion('What grains does ERDE Agro offer?')"
+                >
+                  <div class="portfolio-emoji">🌾</div>
+
+                  <div>
+                    <strong>Cereals & Grains</strong>
+                    <small>Explore grain crops</small>
+                  </div>
+
+                  <span class="arrow">→</span>
+                </button>
+
+                <button
+                  class="portfolio-card"
+                  onclick="
+                    askSuggestion(
+                      'What pulses and millets does ERDE Agro offer?',
+                    )
+                  "
+                >
+                  <div class="portfolio-emoji">🫘</div>
+
+                  <div>
+                    <strong>Pulses & Millets</strong>
+                    <small>Explore pulse crops</small>
+                  </div>
+
+                  <span class="arrow">→</span>
+                </button>
+
+                <button
+                  class="portfolio-card"
+                  onclick="askSuggestion('What fruits does ERDE Agro offer?')"
+                >
+                  <div class="portfolio-emoji">🍍</div>
+
+                  <div>
+                    <strong>Fruits & Others</strong>
+                    <small>Explore fruit crops</small>
+                  </div>
+
+                  <span class="arrow">→</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- QUICK QUESTIONS -->
+
+            <div class="quick-section">
+              <p>💬 Try asking</p>
+
+              <div class="quick-questions">
+                <button
+                  onclick="
+                    askSuggestion('Why should farmers partner with ERDE Agro?')
+                  "
+                >
+                  Why should farmers partner with ERDE Agro?
+                </button>
+
+                <button
+                  onclick="askSuggestion('What crops does ERDE Agro offer?')"
+                >
+                  What crops does ERDE Agro offer?
+                </button>
+
+                <button
+                  onclick="
+                    askSuggestion(
+                      'How does ERDE Agro support sustainable agriculture?',
+                    )
+                  "
+                >
+                  How does ERDE Agro support sustainability?
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- CHAT MESSAGES -->
+
+          <div id="messages"></div>
+        </section>
+
+        <!-- ================= INPUT ================= -->
+
+        <div class="input-area">
+          <div class="input-box">
+            <div class="input-icon">🌱</div>
+
+            <textarea
+              id="question"
+              placeholder="Ask ERDE Agro AI anything..."
+              rows="1"
+              onkeydown="handleKeyDown(event)"
+            ></textarea>
+
+            <button
+              id="sendButton"
+              onclick="sendMessage()"
+              title="Send message"
+            >
+              ↑
+            </button>
+          </div>
+
+          <div class="input-footer">
+            <span> Enter to send </span>
+
+            <span> 🌿 ERDE Agro AI • Local Ollama </span>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+  </body>
+</html>
